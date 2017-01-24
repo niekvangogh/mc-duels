@@ -1,0 +1,6 @@
+name: Duels
+author: Nivyox
+version: 1.0
+main: me.nivyox.duels.Main
+commands:
+  game:

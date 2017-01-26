@@ -2,31 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ef89d3cc-ca88-4213-bc1d-b511fabfbff4" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/Duels/me/nivyox/duels/Main.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/Duels/me/nivyox/duels/commands/CommandGame.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/Duels/me/nivyox/duels/game/Arena.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/Duels/me/nivyox/duels/game/ArenaManager.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/Duels/me/nivyox/duels/game/Game.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/Duels/me/nivyox/duels/game/GameManager.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/Duels/me/nivyox/duels/game/GameScoreboardManager$1.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/Duels/me/nivyox/duels/game/GameScoreboardManager.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/Duels/me/nivyox/duels/game/GameState.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/Duels/me/nivyox/duels/game/GameTimer$1.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/Duels/me/nivyox/duels/game/GameTimer.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/Duels/me/nivyox/duels/game/GameType.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/Duels/me/nivyox/duels/game/WorldState.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/Duels/me/nivyox/duels/utils/ChatMessages.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/Duels.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/Duels/plugin.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/me/nivyox/duels/Main.java" afterPath="$PROJECT_DIR$/src/me/nivyox/duels/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/me/nivyox/duels/commands/CommandGame.java" afterPath="$PROJECT_DIR$/src/me/nivyox/duels/commands/CommandGame.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/me/nivyox/duels/game/Arena.java" afterPath="$PROJECT_DIR$/src/me/nivyox/duels/game/Arena.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/me/nivyox/duels/game/ArenaManager.java" afterPath="$PROJECT_DIR$/src/me/nivyox/duels/game/ArenaManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/me/nivyox/duels/game/Game.java" afterPath="$PROJECT_DIR$/src/me/nivyox/duels/game/Game.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/me/nivyox/duels/game/GameType.java" afterPath="$PROJECT_DIR$/src/me/nivyox/duels/game/GameType.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/me/nivyox/duels/utils/ChatMessages.java" afterPath="$PROJECT_DIR$/src/me/nivyox/duels/utils/ChatMessages.java" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -712,7 +688,7 @@
       <workItem from="1485371107199" duration="2827000" />
       <workItem from="1485425824805" duration="16096000" />
       <workItem from="1485462886527" duration="3035000" />
-      <workItem from="1485467339001" duration="10000" />
+      <workItem from="1485467339001" duration="24000" />
     </task>
     <task id="LOCAL-00001" summary="push it!">
       <created>1485287063189</created>
@@ -728,11 +704,18 @@
       <option name="project" value="LOCAL" />
       <updated>1485431451236</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="you but">
+      <created>1485467358768</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1485467358768</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="30475000" />
+    <option name="totallyTimeSpent" value="30489000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -778,7 +761,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="push it!" />
     <MESSAGE value="yup, did a lot" />
-    <option name="LAST_COMMIT_MESSAGE" value="yup, did a lot" />
+    <MESSAGE value="you but" />
+    <option name="LAST_COMMIT_MESSAGE" value="you but" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

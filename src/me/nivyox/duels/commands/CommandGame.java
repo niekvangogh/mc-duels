@@ -23,7 +23,7 @@ public class CommandGame implements CommandExecutor {
                 if (args.length <= 1) {
                     sender.sendMessage(ChatMessages.game_no_args);
                 } else {
-                    if(GameManager.getGame(args[1]) != null) {
+                    if(GameManager.getGame(args[1]) == null) {
                         GameType gameType = GameType.valueOf(args[0].toUpperCase());
                         sender.sendMessage(ChatMessages.game_created_game);
                         ArrayList<Player> players = new ArrayList<>();

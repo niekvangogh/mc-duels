@@ -1,6 +1,7 @@
 package me.nivyox.duels;
 
 import me.nivyox.duels.commands.CommandGame;
+import me.nivyox.duels.game.ArenaManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 /**
@@ -15,6 +16,7 @@ public class Main extends JavaPlugin {
     @Override
     public void onEnable() {
         getCommand("game").setExecutor(new CommandGame());
+        ArenaManager.loadArenas();
     }
 
     @Override

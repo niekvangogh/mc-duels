@@ -1,5 +1,7 @@
 package me.nivyox.duels.game;
 
+import me.nivyox.duels.Main;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
@@ -13,12 +15,19 @@ public class Game {
     private GameType type;
     private ArrayList<Player> players;
     private GameState state;
+    private GameTimer gameTimer;
+    private GameScoreboardManager scoreboardManager;
 
     public Game(GameType type, ArrayList<Player> players) {
         this.type = type;
         this.players = players;
         this.state = GameState.COUNTDOWN;
-        this.arena = ArenaManager.findArena();
+        this.arena = ArenaManager.findArena(this);
+        this.gameTimer = new GameTimer(this);
+        this.scoreboardManager = new GameScoreboardManager(this);
+
+
+        this.startGame();
     }
 
     public ArrayList<Player> getPlayers() {
@@ -33,13 +42,30 @@ public class Game {
         this.state = state;
     }
 
-    public void startGame() {
+    public GameTimer getGameTimer() {
+        return this.gameTimer;
+    }
 
+    public void startGame() {
+        Bukkit.getScheduler().runTaskTimer(Main.getInstance(), gameTimer, 20, 20);
+        arena.teleportPlayers();
+        for (Player player : players) {
+            player.getInventory().clear();
+            type.giveGameInventory(player);
+        }
     }
 
     public void endGame() {
-
         GameManager.removeGame(this);
     }
 
+    public void broadcast(String message) {
+        for (Player player : players) {
+            player.sendMessage(message);
+        }
+    }
+
+    public GameScoreboardManager getScoreboardManager() {
+        return this.scoreboardManager;
+    }
 }

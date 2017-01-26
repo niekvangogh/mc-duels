@@ -2,6 +2,7 @@ package me.nivyox.duels.game;
 
 import me.nivyox.duels.Main;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
@@ -26,8 +27,11 @@ public class Game {
         this.gameTimer = new GameTimer(this);
         this.scoreboardManager = new GameScoreboardManager(this);
 
-
         this.startGame();
+    }
+
+    public GameType getType() {
+        return this.type;
     }
 
     public ArrayList<Player> getPlayers() {
@@ -55,10 +59,6 @@ public class Game {
         }
     }
 
-    public void endGame() {
-        GameManager.removeGame(this);
-    }
-
     public void broadcast(String message) {
         for (Player player : players) {
             player.sendMessage(message);
@@ -67,5 +67,16 @@ public class Game {
 
     public GameScoreboardManager getScoreboardManager() {
         return this.scoreboardManager;
+    }
+
+    public void endGame(EndReason opponentLeft) {
+        GameManager.removeGame(this);
+        for (Player player : players) {
+            player.sendMessage(ChatColor.RED + "Game ended! Reason: " + opponentLeft.name());
+        }
+    }
+
+    public void removePlayer(Player player) {
+        this.players.remove(player);
     }
 }

@@ -26,8 +26,8 @@ public class GameManager {
     }
 
     public static Game getGame(Player player) {
-        for(Game game : games) {
-            if(game.getPlayers().contains(player)) {
+        for (Game game : games) {
+            if (game.getPlayers().contains(player)) {
                 return game;
             }
         }
@@ -36,11 +36,15 @@ public class GameManager {
 
     public static Game getGame(String name) {
         Player player = Bukkit.getPlayer(name);
-        for(Game game : games) {
-            if(game.getPlayers().contains(player)) {
+        for (Game game : games) {
+            if (game.getPlayers().contains(player)) {
                 return game;
             }
         }
         return null;
+    }
+
+    public static boolean isIngame(Player player) {
+        return getGame(player) == null ? false : true;
     }
 }

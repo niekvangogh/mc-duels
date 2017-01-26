@@ -15,6 +15,7 @@ import java.util.ArrayList;
  * Created by Niek on 24-1-2017.
  */
 public class CommandGame implements CommandExecutor {
+
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if (sender instanceof Player) {
@@ -22,12 +23,14 @@ public class CommandGame implements CommandExecutor {
                 if (args.length <= 1) {
                     sender.sendMessage(ChatMessages.game_no_args);
                 } else {
-                    GameType gameType = GameType.valueOf(args[0].toUpperCase());
-                    sender.sendMessage(ChatMessages.game_created_game);
-                    ArrayList<Player> players = new ArrayList<>();
-                    players.add((Player) sender);
-                    Game game = new Game(gameType, players);
-                    GameManager.addGame(game);
+                    if(GameManager.getGame(args[1]) != null) {
+                        GameType gameType = GameType.valueOf(args[0].toUpperCase());
+                        sender.sendMessage(ChatMessages.game_created_game);
+                        ArrayList<Player> players = new ArrayList<>();
+                        players.add((Player) sender);
+                        Game game = new Game(gameType, players);
+                        GameManager.addGame(game);
+                    }
                 }
             }
         }

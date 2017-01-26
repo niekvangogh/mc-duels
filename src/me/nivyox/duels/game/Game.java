@@ -9,6 +9,7 @@ import java.util.ArrayList;
  */
 public class Game {
 
+    private final Arena arena;
     private GameType type;
     private ArrayList<Player> players;
     private GameState state;
@@ -17,6 +18,7 @@ public class Game {
         this.type = type;
         this.players = players;
         this.state = GameState.COUNTDOWN;
+        this.arena = ArenaManager.findArena();
     }
 
     public ArrayList<Player> getPlayers() {

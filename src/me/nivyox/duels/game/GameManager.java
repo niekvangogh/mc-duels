@@ -1,6 +1,8 @@
 package me.nivyox.duels.game;
 
 import me.nivyox.duels.Main;
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
 
@@ -21,5 +23,24 @@ public class GameManager {
 
     public static void removeGame(Game game) {
         games.remove(game);
+    }
+
+    public static Game getGame(Player player) {
+        for(Game game : games) {
+            if(game.getPlayers().contains(player)) {
+                return game;
+            }
+        }
+        return null;
+    }
+
+    public static Game getGame(String name) {
+        Player player = Bukkit.getPlayer(name);
+        for(Game game : games) {
+            if(game.getPlayers().contains(player)) {
+                return game;
+            }
+        }
+        return null;
     }
 }

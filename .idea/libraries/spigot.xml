@@ -6,6 +6,7 @@
     <JAVADOC />
     <SOURCES>
       <root url="jar://$USER_HOME$/Desktop/MCServers/Lobby 1/spigot.jar!/" />
+      <root url="jar://$USER_HOME$/Desktop/MCServers/Lobby 1/spigot.jar!/" />
     </SOURCES>
   </library>
 </component>

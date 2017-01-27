@@ -1,9 +1,11 @@
 package me.nivyox.duels.game;
 
 import me.nivyox.duels.Main;
+import me.nivyox.duels.utils.DefaultValues;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
+import org.bukkit.event.player.PlayerTeleportEvent;
 
 import java.util.ArrayList;
 
@@ -28,6 +30,10 @@ public class Game {
         this.scoreboardManager = new GameScoreboardManager(this);
 
         this.startGame();
+    }
+
+    public void removePlayer(Player player) {
+        this.players.remove(player);
     }
 
     public GameType getType() {
@@ -73,10 +79,8 @@ public class Game {
         GameManager.removeGame(this);
         for (Player player : players) {
             player.sendMessage(ChatColor.RED + "Game ended! Reason: " + opponentLeft.name());
+            player.teleport(DefaultValues.lobbySpawnLocation);
         }
     }
 
-    public void removePlayer(Player player) {
-        this.players.remove(player);
-    }
 }

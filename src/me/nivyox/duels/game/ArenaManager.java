@@ -35,10 +35,9 @@ public class ArenaManager {
     }
 
     public static void loadArenas() {
-
         try {
             for (int i = 0; i < 5; i++) {
-                if(Bukkit.getServer().createWorld(new WorldCreator("game_arena_" + i).environment(World.Environment.NORMAL)) != null) {
+                if (Bukkit.getServer().createWorld(new WorldCreator("game_arena_" + i).environment(World.Environment.NORMAL)) != null) {
                     Main.getInstance().getLogger().info("Loaded world > " + i);
                 }
             }

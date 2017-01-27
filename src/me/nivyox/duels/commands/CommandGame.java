@@ -8,15 +8,17 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Niek on 24-1-2017.
  */
-public class CommandGame implements CommandExecutor {
+public class CommandGame implements CommandExecutor, TabCompleter {
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
@@ -38,5 +40,25 @@ public class CommandGame implements CommandExecutor {
             }
         }
         return true;
+    }
+
+    @Override
+    public List<String> onTabComplete(CommandSender commandSender, Command cmd, String s, String[] args) {
+        ArrayList<String> returning = new ArrayList<>();
+        if (cmd.getName().equalsIgnoreCase("game")) {
+            if (args.length == 1) {
+                for (GameType type : GameType.values()) {
+                    returning.add(type.getName());
+                }
+            } else if(args.length == 2) {
+                for (Player player : Bukkit.getOnlinePlayers()) {
+                    if(!GameManager.isIngame(player)) {
+                        returning.add(player.getName());
+                    }
+                }
+            }
+        }
+        System.out.println(returning);
+        return returning;
     }
 }

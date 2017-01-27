@@ -1,6 +1,7 @@
 package me.nivyox.duels.game;
 
 import me.nivyox.duels.Main;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
@@ -27,4 +28,11 @@ public enum GameType {
     }
 
 
+    public String getFormattedName() {
+        return ChatColor.GOLD.toString() + ChatColor.BOLD + type;
+    }
+
+    public String getName() {
+        return type;
+    }
 }

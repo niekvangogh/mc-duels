@@ -75,10 +75,12 @@ public class Game {
         return this.scoreboardManager;
     }
 
-    public void endGame(EndReason opponentLeft) {
+    public void endGame(EndReason endReason) {
+        gameTimer = null;
+        scoreboardManager = null;
         GameManager.removeGame(this);
         for (Player player : players) {
-            player.sendMessage(ChatColor.RED + "Game ended! Reason: " + opponentLeft.name());
+            player.sendMessage(ChatColor.RED + "Game ended! Reason: " + endReason.getDescription());
             player.teleport(DefaultValues.lobbySpawnLocation);
         }
     }

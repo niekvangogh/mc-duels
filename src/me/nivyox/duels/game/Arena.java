@@ -33,10 +33,15 @@ public class Arena {
     public void teleportPlayers() {
         ArrayList<Player> players = game.getPlayers();
         for (int i = 0; i < players.size(); i++) {
-            Location location = spawnLocations.get(i);
-            location.setWorld(getWorld());
-            players.get(i).teleport(location);
-            System.out.println(players.get(i).getWorld().getName());
+            try {
+
+                Location location = spawnLocations.get(i);
+                location.setWorld(getWorld());
+                players.get(i).teleport(location);
+                System.out.println(players.get(i).getWorld().getName());
+            } catch (NullPointerException e) {
+                game.endGame(EndReason.NO_ARENA_SPAWNPOINTS);
+            }
         }
     }
 

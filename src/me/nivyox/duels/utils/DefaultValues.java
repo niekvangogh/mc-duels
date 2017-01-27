@@ -8,5 +8,5 @@ import org.bukkit.Location;
  */
 public class DefaultValues {
 
-    public static Location lobbySpawnLocation = Bukkit.getWorld("lobby").getHighestBlockAt(0,0).getLocation();
+    public static Location lobbySpawnLocation = Bukkit.getWorlds().get(0).getHighestBlockAt(0,0).getLocation();
 }

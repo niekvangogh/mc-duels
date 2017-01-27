@@ -21,6 +21,7 @@ public class Main extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new PlayerListener(), this);
 
         getCommand("game").setExecutor(new CommandGame());
+        getCommand("game").setTabCompleter(new CommandGame());
     }
 
     @Override

@@ -4,6 +4,7 @@ import me.nivyox.duels.game.EndReason;
 import me.nivyox.duels.game.Game;
 import me.nivyox.duels.game.GameManager;
 import me.nivyox.duels.game.GameType;
+import me.nivyox.duels.utils.DefaultValues;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
@@ -12,6 +13,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityRegainHealthEvent;
+import org.bukkit.event.player.PlayerChatTabCompleteEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
@@ -23,7 +25,7 @@ public class PlayerListener implements Listener {
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
-        player.teleport(Bukkit.getWorld("lobby").getSpawnLocation());
+        player.teleport(DefaultValues.lobbySpawnLocation);
     }
 
     @EventHandler

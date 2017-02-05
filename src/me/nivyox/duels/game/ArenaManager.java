@@ -2,6 +2,7 @@ package me.nivyox.duels.game;
 
 import me.nivyox.duels.Main;
 import org.bukkit.Bukkit;
+import org.bukkit.Difficulty;
 import org.bukkit.World;
 import org.bukkit.WorldCreator;
 
@@ -48,12 +49,11 @@ public class ArenaManager {
         }
 
         for (World world : Bukkit.getWorlds()) {
+            world.setDifficulty(Difficulty.PEACEFUL);
             if (world.getName().startsWith("game_arena_")) {
                 Main.getInstance().getLogger().info("Found world > " + world.getName());
                 addArena(new Arena(world));
             }
         }
-
     }
-
 }

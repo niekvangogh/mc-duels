@@ -3,9 +3,9 @@ package me.nivyox.duels.game;
 import me.nivyox.duels.Main;
 import me.nivyox.duels.utils.DefaultValues;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
+import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
-import org.bukkit.event.player.PlayerTeleportEvent;
+import org.bukkit.scheduler.BukkitTask;
 
 import java.util.ArrayList;
 
@@ -20,6 +20,8 @@ public class Game {
     private GameState state;
     private GameTimer gameTimer;
     private GameScoreboardManager scoreboardManager;
+    private ArrayList<Player> spectators = new ArrayList<>();
+    private BukkitTask bukkitTask;
 
     public Game(GameType type, ArrayList<Player> players) {
         this.type = type;
@@ -30,10 +32,6 @@ public class Game {
         this.scoreboardManager = new GameScoreboardManager(this);
 
         this.startGame();
-    }
-
-    public void removePlayer(Player player) {
-        this.players.remove(player);
     }
 
     public GameType getType() {
@@ -57,9 +55,10 @@ public class Game {
     }
 
     public void startGame() {
-        Bukkit.getScheduler().runTaskTimer(Main.getInstance(), gameTimer, 20, 20);
+        this.bukkitTask = Bukkit.getScheduler().runTaskTimer(Main.getInstance(), gameTimer, 20, 20);
         arena.teleportPlayers();
         for (Player player : players) {
+            player.setGameMode(GameMode.ADVENTURE);
             player.getInventory().clear();
             type.giveGameInventory(player);
         }
@@ -76,13 +75,38 @@ public class Game {
     }
 
     public void endGame(EndReason endReason) {
-        gameTimer = null;
-        scoreboardManager = null;
+        getArena().setState(WorldState.AVAILABLE);
+        bukkitTask.cancel();
         GameManager.removeGame(this);
+        for (Player player : spectators) {
+            player.teleport(DefaultValues.lobbyworld.getSpawnLocation());
+            player.setGameMode(GameMode.ADVENTURE);
+        }
         for (Player player : players) {
-            player.sendMessage(ChatColor.RED + "Game ended! Reason: " + endReason.getDescription());
-            player.teleport(DefaultValues.lobbySpawnLocation);
+            player.teleport(DefaultValues.lobbyworld.getSpawnLocation());
+            player.setGameMode(GameMode.ADVENTURE);
         }
     }
 
+    public void removePlayer(Player player) {
+        this.players.remove(player);
+    }
+
+    public Arena getArena() {
+        return arena;
+    }
+
+    public void addSpectator(Player spectator, Player player) {
+        if (player == null) {
+            spectator.teleport(getPlayers().get(0).getLocation());
+        } else {
+            spectator.teleport(player);
+        }
+        this.spectators.add(spectator);
+        spectator.setGameMode(GameMode.SPECTATOR);
+    }
+
+    public ArrayList<Player> getSpectator() {
+        return spectators;
+    }
 }

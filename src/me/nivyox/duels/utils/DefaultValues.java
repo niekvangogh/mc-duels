@@ -1,12 +1,13 @@
 package me.nivyox.duels.utils;
 
 import org.bukkit.Bukkit;
-import org.bukkit.Location;
+import org.bukkit.World;
 
 /**
- * Created by Niek on 1/27/2017.
+ * Created by Niek on 5-2-2017.
  */
 public class DefaultValues {
 
-    public static Location lobbySpawnLocation = Bukkit.getWorlds().get(0).getHighestBlockAt(0,0).getLocation();
+    public static World lobbyworld = Bukkit.getWorld("lobby");
 }
+

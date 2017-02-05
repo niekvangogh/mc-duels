@@ -11,6 +11,7 @@ import java.util.ArrayList;
  */
 public class GameManager {
     private static ArrayList<Game> games = new ArrayList<>();
+    private static ArrayList<Player> availablePlayers;
 
     public static ArrayList<Game> getGames() {
         return games;
@@ -46,5 +47,15 @@ public class GameManager {
 
     public static boolean isIngame(Player player) {
         return getGame(player) == null ? false : true;
+    }
+
+    public static ArrayList<Player> getAvailablePlayers() {
+        ArrayList<Player> players = new ArrayList<>();
+        for (Player player : Bukkit.getOnlinePlayers()) {
+            if (getGame(player) == null) {
+                players.add(player);
+            }
+        }
+        return players;
     }
 }

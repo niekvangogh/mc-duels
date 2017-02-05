@@ -40,13 +40,16 @@ public class GameTimer implements Runnable {
                 if (endTime == 0) {
                     this.endTime = time;
                 }
-
-                if (time == 10) {
-
+                if (time - endTime == 5) {
+                    game.endGame(EndReason.OPPONENT_KILLED);
                 }
                 time++;
-                break;
+                return;
         }
         return;
+    }
+
+    public void setTime(int time) {
+        this.time = time;
     }
 }

@@ -10,7 +10,6 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,37 +27,49 @@ public class CommandGame implements CommandExecutor, TabCompleter {
                     sender.sendMessage(ChatMessages.game_no_args);
                 } else {
                     if (!GameManager.isIngame(Bukkit.getPlayer(args[1]))) {
-                        GameType gameType = GameType.valueOf(args[0].toUpperCase());
+                        GameType gameType;
+                        try {
+                            gameType = GameType.valueOf(args[0].toUpperCase());
+                        } catch(IllegalArgumentException e) {
+                            sender.sendMessage(ChatMessages.no_gametype_like_that);
+                            return false;
+                        }
                         sender.sendMessage(ChatMessages.game_created_game);
                         ArrayList<Player> players = new ArrayList<>();
                         players.add((Player) sender);
                         players.add(Bukkit.getPlayer(args[1]));
                         Game game = new Game(gameType, players);
                         GameManager.addGame(game);
+                    } else {
+                        sender.sendMessage(ChatMessages.player_is_ingame);
                     }
                 }
+            } else {
+                sender.sendMessage(ChatMessages.no_permissions);
             }
+        } else {
+            sender.sendMessage(ChatMessages.no_player);
         }
         return true;
     }
 
     @Override
-    public List<String> onTabComplete(CommandSender commandSender, Command cmd, String s, String[] args) {
-        ArrayList<String> returning = new ArrayList<>();
-        if (cmd.getName().equalsIgnoreCase("game")) {
+    public List<String> onTabComplete(CommandSender sender, Command cmd, String lable, String[] args) {
+        List<String> returning = new ArrayList<>();
+        if (sender instanceof Player) {
+            returning.clear();
             if (args.length == 1) {
                 for (GameType type : GameType.values()) {
-                    returning.add(type.getName());
+                    returning.add(type.getCoolName());
                 }
-            } else if(args.length == 2) {
-                for (Player player : Bukkit.getOnlinePlayers()) {
-                    if(!GameManager.isIngame(player)) {
-                        returning.add(player.getName());
-                    }
+            } else if (args.length == 2) {
+                ArrayList<Player> players = GameManager.getAvailablePlayers();
+                for (Player availableplayer : players) {
+                    returning.add(availableplayer.getName());
                 }
+                returning.remove(sender.getName());
             }
         }
-        System.out.println(returning);
         return returning;
     }
 }

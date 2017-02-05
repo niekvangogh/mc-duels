@@ -25,6 +25,9 @@ public class GameScoreboardManager {
         for (Player player : game.getPlayers()) {
             player.setScoreboard(getScoreboard());
         }
+        for (Player player : game.getSpectator()) {
+            player.setScoreboard(getScoreboard());
+        }
     }
 
     public Scoreboard getScoreboard() {
@@ -51,6 +54,4 @@ public class GameScoreboardManager {
         }
         return scoreboard;
     }
-
-
 }

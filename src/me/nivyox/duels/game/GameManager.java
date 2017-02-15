@@ -58,4 +58,14 @@ public class GameManager {
         }
         return players;
     }
+
+    public static ArrayList<Player> getIngamePlayers() {
+        ArrayList<Player> players = new ArrayList<>();
+        for (Game game : games) {
+            for (Player player : game.getPlayers()) {
+                players.add(player);
+            }
+        }
+        return players;
+    }
 }

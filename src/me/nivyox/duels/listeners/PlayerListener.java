@@ -11,10 +11,7 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityRegainHealthEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
-import org.bukkit.event.player.PlayerDropItemEvent;
-import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.event.player.PlayerQuitEvent;
-import org.bukkit.event.player.PlayerTeleportEvent;
+import org.bukkit.event.player.*;
 
 /**
  * Created by Niek on 27-1-2017.
@@ -70,11 +67,13 @@ public class PlayerListener implements Listener {
     @EventHandler
     public void onHealthRegen(EntityRegainHealthEvent event) {
         if (event.getEntity() instanceof Player) {
-            Player player = (Player) event.getEntity();
-            if (GameManager.isIngame(player)) {
-                Game game = GameManager.getGame(player);
-                if (game.getType() == GameType.UHC) {
-                    event.setCancelled(true);
+            if (event.getRegainReason() == EntityRegainHealthEvent.RegainReason.REGEN) {
+                Player player = (Player) event.getEntity();
+                if (GameManager.isIngame(player)) {
+                    Game game = GameManager.getGame(player);
+                    if (game.getType() == GameType.UHC) {
+                        event.setCancelled(true);
+                    }
                 }
             }
         }
@@ -83,7 +82,7 @@ public class PlayerListener implements Listener {
     @EventHandler
     public void onKill(PlayerDeathEvent event) {
         Player player = event.getEntity();
-        if (GameManager.getGame(player) != null) {
+        if (GameManager.getGame(player) != null && event.getEntity().getKiller() != null) {
             player.setHealth(20L);
             player.setGameMode(GameMode.SPECTATOR);
             Game game = GameManager.getGame(player);
@@ -99,7 +98,6 @@ public class PlayerListener implements Listener {
     public void onDrop(PlayerDropItemEvent event) {
         Player player = event.getPlayer();
         event.setCancelled(true);
-
     }
 
     @EventHandler
@@ -108,6 +106,19 @@ public class PlayerListener implements Listener {
         if (event.getTo().getWorld().getName() != event.getFrom().getWorld().getName()) {
             player.setGameMode(GameMode.SURVIVAL);
             player.getInventory().clear();
+        }
+    }
+
+    @EventHandler
+    public void onMove(PlayerMoveEvent event) {
+        Player player = event.getPlayer();
+        if (GameManager.isIngame(player)) {
+            Game game = GameManager.getGame(player);
+            if (game.getState() == GameState.COUNTDOWN) {
+                if (event.getTo().getBlockZ() != event.getFrom().getBlockZ() || event.getTo().getBlockX() != event.getFrom().getBlockX()) {
+                    event.setTo(game.getArena().getPlayerSpawnLocations().get(player));
+                }
+            }
         }
     }
 }

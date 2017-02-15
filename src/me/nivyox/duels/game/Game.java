@@ -78,13 +78,11 @@ public class Game {
         getArena().setState(WorldState.AVAILABLE);
         bukkitTask.cancel();
         GameManager.removeGame(this);
-        for (Player player : spectators) {
+        for (Player player : getAllPlayers()) {
             player.teleport(DefaultValues.lobbyworld.getSpawnLocation());
             player.setGameMode(GameMode.ADVENTURE);
-        }
-        for (Player player : players) {
-            player.teleport(DefaultValues.lobbyworld.getSpawnLocation());
-            player.setGameMode(GameMode.ADVENTURE);
+            player.setHealth(player.getMaxHealth());
+            player.getInventory().clear();
         }
     }
 
@@ -108,5 +106,16 @@ public class Game {
 
     public ArrayList<Player> getSpectator() {
         return spectators;
+    }
+
+    public ArrayList<Player> getAllPlayers() {
+        ArrayList<Player> players = new ArrayList<>();
+        for (Player player : getSpectator()) {
+            players.add(player);
+        }
+        for (Player player : getPlayers()) {
+            players.add(player);
+        }
+        return players;
     }
 }

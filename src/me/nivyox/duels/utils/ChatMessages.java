@@ -20,4 +20,6 @@ public class ChatMessages {
     public static String player_is_not_online = ChatColor.RED + "Player is not online!";
     public static String you_are_in_game = ChatColor.RED + "You can not do this action if you are in a game!";
     public static String spectate_usage = ChatColor.GREEN + "/spectate [USERNAME] - Spectate a user in a game";
+    public static String no_coords_set = ChatColor.RED + "There are no coordinates set for this instance! Please contact a developer! Instance %%INSTANCE%%";
+    public static String no_one_to_spectate = ChatColor.RED + "There is no-one to spectate!";
 }

@@ -22,10 +22,7 @@ public class GameScoreboardManager {
     }
 
     public void update() {
-        for (Player player : game.getPlayers()) {
-            player.setScoreboard(getScoreboard());
-        }
-        for (Player player : game.getSpectator()) {
+        for (Player player : game.getAllPlayers()) {
             player.setScoreboard(getScoreboard());
         }
     }
@@ -34,15 +31,26 @@ public class GameScoreboardManager {
         Scoreboard scoreboard = Bukkit.getScoreboardManager().getNewScoreboard();
         Objective obj = scoreboard.registerNewObjective("mainScoreboard", "dummy");
         obj.setDisplaySlot(DisplaySlot.SIDEBAR);
-        obj.setDisplayName(ChatColor.GREEN.toString() + ChatColor.BOLD + "Dueller");
+        obj.setDisplayName(ChatColor.YELLOW.toString() + ChatColor.BOLD + "Dueller");
 
         ArrayList<String> scores = new ArrayList<>();
         switch (game.getState()) {
             case COUNTDOWN:
+                scores.add(" ");
                 scores.add(ChatColor.GREEN + "Time: " + ChatColor.WHITE + 0);
+                scores.add("  ");
+                scores.add(ChatColor.GREEN + "Instance: " + ChatColor.WHITE + game.getArena().getWorld().getName());
+                scores.add("   ");
+                scores.add(ChatColor.GREEN + "Game type: " + ChatColor.WHITE + game.getType().getCoolName());
+                scores.add("    ");
                 break;
             case GAME:
+                scores.add(" ");
                 scores.add(ChatColor.GREEN + "Time: " + ChatColor.WHITE + game.getGameTimer().getTime());
+                scores.add("  ");
+                scores.add(ChatColor.GREEN + "Instance: " + ChatColor.WHITE + game.getArena().getWorld().getName());
+                scores.add("   ");
+                scores.add(ChatColor.GREEN + "Game type: " + ChatColor.WHITE + game.getType().getCoolName());
                 break;
             case END:
                 break;

@@ -19,11 +19,18 @@ public enum GameType {
     }
 
     public void giveGameInventory(Player player) {
-        List<ItemStack> items = (List<ItemStack>) Main.getInstance().getConfig().getList("modes." + this.type.toLowerCase() + ".items");
-
-        for (ItemStack item : items) {
-            player.getInventory().addItem(item);
+        List<ItemStack> items = (List<ItemStack>) Main.getInstance().getConfig().getList("modes." + type.toLowerCase() + ".inventory.items");
+        ItemStack[] itemstacks = new ItemStack[items.size()];
+        for (int i = 0; i < items.size(); i++) {
+            itemstacks[i] = items.get(i);
         }
+        items = (List<ItemStack>) Main.getInstance().getConfig().getList("modes." + type.toLowerCase() + ".inventory.armor");
+        ItemStack[] armorstacks = new ItemStack[items.size()];
+        for (int i = 0; i < items.size(); i++) {
+            armorstacks[i] = items.get(i);
+        }
+        player.getInventory().setContents(itemstacks);
+        player.getInventory().setArmorContents(armorstacks);
     }
 
     public String getCoolName() {

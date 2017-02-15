@@ -1,11 +1,13 @@
 package me.nivyox.duels.game;
 
 import me.nivyox.duels.Main;
+import me.nivyox.duels.utils.ChatMessages;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by Niek on 26-1-2017.
@@ -15,6 +17,7 @@ public class Arena {
     private Game game;
     private WorldState state;
     private ArrayList<Location> spawnLocations;
+    private HashMap<Player, Location> playerSpawnLocations = new HashMap<>();
 
     public Arena(World world) {
         this.state = WorldState.AVAILABLE;
@@ -33,20 +36,28 @@ public class Arena {
     public void teleportPlayers() {
         ArrayList<Player> players = game.getPlayers();
         for (int i = 0; i < players.size(); i++) {
-            try {
 
-                Location location = spawnLocations.get(i);
-                location.setWorld(getWorld());
-                players.get(i).teleport(location);
-                System.out.println(players.get(i).getWorld().getName());
+            Location location;
+            try {
+                location = spawnLocations.get(i);
             } catch (NullPointerException e) {
-                game.endGame(EndReason.NO_ARENA_SPAWNPOINTS);
+                for (Player player : players) {
+                    player.sendMessage(ChatMessages.no_coords_set.replace("%%INSTANCE%%", this.getWorld().getName()));
+                }
+                return;
             }
+            location.setWorld(getWorld());
+            players.get(i).teleport(location);
+            playerSpawnLocations.put(players.get(i), location);
         }
     }
 
     public ArrayList<Location> getSpawnLocations() {
         return this.spawnLocations;
+    }
+
+    public HashMap<Player, Location> getPlayerSpawnLocations() {
+        return this.playerSpawnLocations;
     }
 
     public void setGame(Game game) {

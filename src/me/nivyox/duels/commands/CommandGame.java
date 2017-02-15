@@ -30,7 +30,7 @@ public class CommandGame implements CommandExecutor, TabCompleter {
                         GameType gameType;
                         try {
                             gameType = GameType.valueOf(args[0].toUpperCase());
-                        } catch(IllegalArgumentException e) {
+                        } catch (IllegalArgumentException e) {
                             sender.sendMessage(ChatMessages.no_gametype_like_that);
                             return false;
                         }

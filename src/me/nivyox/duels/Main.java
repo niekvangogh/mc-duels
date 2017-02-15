@@ -1,6 +1,7 @@
 package me.nivyox.duels;
 
 import me.nivyox.duels.commands.CommandGame;
+import me.nivyox.duels.commands.CommandSaveInventory;
 import me.nivyox.duels.commands.CommandSpectate;
 import me.nivyox.duels.game.ArenaManager;
 import me.nivyox.duels.listeners.PlayerListener;
@@ -22,12 +23,16 @@ public class Main extends JavaPlugin {
     @Override
     public void onEnable() {
         ArenaManager.loadArenas();
-
         getServer().getPluginManager().registerEvents(new PlayerListener(), this);
 
         getCommand("spectate").setExecutor(new CommandSpectate());
+        getCommand("spectate").setTabCompleter(new CommandSpectate());
+
         getCommand("game").setExecutor(new CommandGame());
         getCommand("game").setTabCompleter(new CommandGame());
+
+        getCommand("saveinventory").setExecutor(new CommandSaveInventory());
+
     }
 
     @Override

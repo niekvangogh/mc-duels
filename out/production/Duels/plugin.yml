@@ -3,4 +3,8 @@ author: Nivyox
 version: 1.0
 main: me.nivyox.duels.Main
 commands:
+  spectate:
   game:
+  particles:
+  recording:
+  saveinventory:

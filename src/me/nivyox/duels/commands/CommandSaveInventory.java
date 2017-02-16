@@ -1,9 +1,11 @@
 package me.nivyox.duels.commands;
 
 import me.nivyox.duels.Main;
+import me.nivyox.duels.game.GameType;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
@@ -13,7 +15,7 @@ import java.util.List;
 /**
  * Created by Niek on 15-2-2017.
  */
-public class CommandSaveInventory implements CommandExecutor {
+public class CommandSaveInventory implements CommandExecutor, TabCompleter {
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
@@ -32,5 +34,19 @@ public class CommandSaveInventory implements CommandExecutor {
             Main.getInstance().saveConfig();
         }
         return false;
+    }
+
+    @Override
+    public List<String> onTabComplete(CommandSender sender, Command cmd, String s, String[] args) {
+        List<String> returning = new ArrayList<>();
+        if (sender instanceof Player) {
+            returning.clear();
+            if (args.length == 1) {
+                for (GameType type : GameType.values()) {
+                    returning.add(type.getCoolName());
+                }
+            }
+        }
+        return returning;
     }
 }

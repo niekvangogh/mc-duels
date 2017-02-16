@@ -32,7 +32,7 @@ public class Main extends JavaPlugin {
         getCommand("game").setTabCompleter(new CommandGame());
 
         getCommand("saveinventory").setExecutor(new CommandSaveInventory());
-
+        getCommand("saveinventory").setTabCompleter(new CommandSaveInventory());
     }
 
     @Override

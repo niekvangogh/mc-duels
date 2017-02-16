@@ -22,4 +22,7 @@ public class ChatMessages {
     public static String spectate_usage = ChatColor.GREEN + "/spectate [USERNAME] - Spectate a user in a game";
     public static String no_coords_set = ChatColor.RED + "There are no coordinates set for this instance! Please contact a developer! Instance %%INSTANCE%%";
     public static String no_one_to_spectate = ChatColor.RED + "There is no-one to spectate!";
+    public static String saveposition_use_1_or_2 = ChatColor.RED + "Please use the location 1 or 2!";
+    public static String saveposition_dont_use_letters = ChatColor.RED + "Please only use numbers!";
+    public static String saveposition_usage = ChatColor.RED + "Please use /setgamespawnpoint [1 or 2] in the world you want to set the spawn to!";
 }

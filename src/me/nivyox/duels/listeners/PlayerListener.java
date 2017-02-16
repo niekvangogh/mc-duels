@@ -82,12 +82,17 @@ public class PlayerListener implements Listener {
     @EventHandler
     public void onKill(PlayerDeathEvent event) {
         Player player = event.getEntity();
-        if (GameManager.getGame(player) != null && event.getEntity().getKiller() != null) {
+        if (GameManager.getGame(player) != null) {
             player.setHealth(20L);
             player.setGameMode(GameMode.SPECTATOR);
             Game game = GameManager.getGame(player);
-            event.setDeathMessage(ChatColor.GOLD.toString() + ChatColor.BOLD.toString() + "%%KILLER%% has won the game!".replace("%%KILLER%%", event.getEntity().getKiller().getDisplayName()));
             event.getDrops().clear();
+            if (event.getEntity().getKiller() == null) {
+                game.endGame(EndReason.PLAYER_DIED);
+            } else {
+                event.setDeathMessage(ChatColor.GOLD.toString() + ChatColor.BOLD.toString() + "%%KILLER%% has won the game!".replace("%%KILLER%%", event.getEntity().getKiller().getDisplayName()));
+            }
+            game.endGame(EndReason.OPPONENT_KILLED);
             game.setState(GameState.END);
         } else {
             event.setDeathMessage(null);

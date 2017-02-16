@@ -6,7 +6,9 @@ import org.bukkit.ChatColor;
  * Created by Niek on 27-1-2017.
  */
 public enum EndReason {
-    OPPONENT_LEFT("Game ended because your opponent left the game!"), NO_ARENA_SPAWNPOINTS("Game ended because the arena you got assigned doesn't have any spawnpoints, please contact a staff member"), OPPONENT_KILLED("Game ended because you won the game!");
+    OPPONENT_LEFT("Game ended because your opponent left the game!"),
+    OPPONENT_KILLED("Game ended because you won the game!"),
+    PLAYER_DIED("Game ended because player randomly died!");
 
     private String description;
 

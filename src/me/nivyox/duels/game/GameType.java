@@ -26,11 +26,12 @@ public enum GameType {
         }
         items = (List<ItemStack>) Main.getInstance().getConfig().getList("modes." + type.toLowerCase() + ".inventory.armor");
         ItemStack[] armorstacks = new ItemStack[items.size()];
-        for (int i = 0; i < items.size(); i++) {
+        for (int i = 0; i < armorstacks.length; i++) {
             armorstacks[i] = items.get(i);
         }
         player.getInventory().setContents(itemstacks);
         player.getInventory().setArmorContents(armorstacks);
+        player.updateInventory();
     }
 
     public String getCoolName() {

@@ -1,6 +1,7 @@
 package me.nivyox.duels;
 
 import me.nivyox.duels.commands.CommandGame;
+import me.nivyox.duels.commands.CommandGameSpawnpoint;
 import me.nivyox.duels.commands.CommandSaveInventory;
 import me.nivyox.duels.commands.CommandSpectate;
 import me.nivyox.duels.game.ArenaManager;
@@ -33,6 +34,8 @@ public class Main extends JavaPlugin {
 
         getCommand("saveinventory").setExecutor(new CommandSaveInventory());
         getCommand("saveinventory").setTabCompleter(new CommandSaveInventory());
+
+        getCommand("setgamespawnpoint").setExecutor(new CommandGameSpawnpoint());
     }
 
     @Override

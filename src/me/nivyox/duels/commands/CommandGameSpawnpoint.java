@@ -14,6 +14,7 @@ import java.util.List;
  * Created by Niek on 16-2-2017.
  */
 public class CommandGameSpawnpoint implements CommandExecutor {
+
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if (sender instanceof Player) {
